@@ -1,0 +1,58 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(18, 158, 111);
+    height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    
+}
+
+#stopwatch {
+    text-align: center;
+}
+
+#time {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    font-size: 1em;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+#start{
+    background-color: red;
+    color: azure;
+    font-size: 20px;
+    font-weight: 300;
+    border-radius: 5px;
+}
+#stop{
+    background-color: rgb(38, 219, 11);
+    color: azure;
+    font-size: 20px;
+    font-weight: 300;
+    border-radius: 5px;
+
+    
+    
+}
+#reset{
+    background-color: rgb(15, 15, 204);
+    color: azure;
+    font-size: 20px;
+    font-weight: 300;
+    border-radius: 5px;
+    
+}

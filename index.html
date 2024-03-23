@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+
+<div id="stopwatch">
+    <div id="time">00:00:00</div>
+    <div id="controls">
+        <button onclick="startStop()" id="start">Start</button>
+        <button onclick="stop()" id="stop">Stop</button>
+        <button onclick="reset()" id="reset">Reset</button>
+    </div>
+</div>
+
+<script>
+    let startTime;
+    let isRunning = false;
+
+    function startStop() {
+        if (isRunning) {
+            stop();
+        } else {
+            start();
+        }
+    }
+
+    function start() {
+        isRunning = true;
+        startTime = new Date().getTime() - (parseInt(localStorage.getItem('elapsedTime')) || 0);
+        update();
+    }
+
+    function stop() {
+        isRunning = false;
+        localStorage.setItem('elapsedTime', new Date().getTime() - startTime);
+    }
+
+    function reset() {
+        isRunning = false;
+        localStorage.removeItem('elapsedTime');
+        update();
+    }
+
+    function update() {
+        if (isRunning) {
+            requestAnimationFrame(update);
+        }
+
+        const currentTime = new Date().getTime();
+        const elapsedTime = isRunning ? currentTime - startTime : 0;
+
+        const seconds = Math.floor(elapsedTime / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+
+        const formattedTime =
+            pad(hours % 24) + ':' +
+            pad(minutes % 60) + ':' +
+            pad(seconds % 60);
+
+        document.getElementById('time').innerText = formattedTime;
+    }
+
+    function pad(value) {
+        return value < 10 ? '0' + value : value;
+    }
+
+    // Initial update
+    update();
+</script>
+
+</body>
+</html>
